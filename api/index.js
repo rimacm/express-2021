@@ -16,6 +16,15 @@ const getBooks = async () => {
     return books;
 }
 
+const getAuthors = async () => {
+    //SELECT * FROM autor
+    const authors = await db.autor.findAll().then(result => {
+        return result
+    });
+
+    return authors;
+}
+
 const getBookById = async (id) => {
     console.log('*--*-*-*-***-*-');
     console.log('El ID que llegó a/api es' + id);
@@ -42,6 +51,7 @@ const searchByTitle = async (titulo) => {
             }
         }, 
         include: db.autor
+        
     }).then(result => {
         return result;
     });
@@ -50,9 +60,17 @@ const searchByTitle = async (titulo) => {
 
 }
 
+const addBook = (titulo, precio, portada, autorId) => {
+    //Acá vamos a agregar un libro
+    console.log('Llegó', titulo, precio, portada, autorId);
+}
+
+
 // Exportamos las funciones
 module.exports = { 
     getBooks,
+    getAuthors,
     getBookById,
-    searchByTitle
+    searchByTitle,
+    addBook
 }
