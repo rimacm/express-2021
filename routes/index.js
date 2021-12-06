@@ -32,13 +32,20 @@ router.get('/agregar', async (req, res) => {
   // Le envio loa autores al ejs
   res.render('pages/agregar', { authors });
 });
-
+/*
+    info
+    solicitud
+    req.
+      params (:id)
+      query  (?q=hhhhf)
+      body  (formulario con post)
+*/
   /* POST agregar libro, proceso  csla*/
-router.post('/agregar-libro', (req, res) => {
+router.post('/agregar-libro', async (req, res) => {
   //LEVANTAR LOS Dtos del formulario de agregar
   console.log(req.body);
   const {titulo, precio, portada, autor} = req.body;
-  api.addBook(titulo, precio, portada, autor);
+  await api.addBook(titulo, precio, portada, autor);
 
   res.send('vas bien');
 });
